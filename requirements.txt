@@ -1,0 +1,6 @@
+Django
+# django-debug-toolbar
+pydantic
+pydantic-settings
+# gunicorn
+psycopg[binary]

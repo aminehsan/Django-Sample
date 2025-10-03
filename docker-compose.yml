@@ -1,0 +1,34 @@
+services:
+  django:
+    container_name: ${PROJECT_NAME}-django
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    expose:
+      - ${DJANGO_PORT}
+    ports:
+      - ${DJANGO_PORT}:8000
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    container_name: ${PROJECT_NAME}-postgres
+    image: postgres:alpine3.22
+    restart: unless-stopped
+    shm_size: 256mb
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      interval: 10s
+      timeout: 5s
+      retries: 2
+
+volumes:
+  postgres_data:
