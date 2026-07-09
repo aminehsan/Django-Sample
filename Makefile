@@ -29,14 +29,14 @@ endif
 install_packages: setup_venv
 ifeq ($(OS),Windows_NT)
 	$(VENV_PATH_WINDOWS)\pip install -r $(REQUIREMENTS_FILE_NAME).txt && \
-	$(VENV_PATH_WINDOWS)\pip freeze > $(REQUIREMENTS_FILE_NAME)-lock.txt && \
+	$(VENV_PATH_WINDOWS)\pip freeze > $(REQUIREMENTS_FILE_NAME)_lock.txt && \
 	$(VENV_PATH_WINDOWS)\python -m pipdeptree && \
-	$(VENV_PATH_WINDOWS)\python -m pipdeptree > $(REQUIREMENTS_FILE_NAME)-pipdeptree.txt
+	$(VENV_PATH_WINDOWS)\python -m pipdeptree > pipdeptree.txt
 else
 	$(VENV_PATH_UNIX)/pip install -r $(REQUIREMENTS_FILE_NAME).txt && \
-	$(VENV_PATH_UNIX)/pip freeze > $(REQUIREMENTS_FILE_NAME)-lock.txt && \
+	$(VENV_PATH_UNIX)/pip freeze > $(REQUIREMENTS_FILE_NAME)_lock.txt && \
 	$(VENV_PATH_UNIX)/python -m pipdeptree && \
-	$(VENV_PATH_UNIX)/python -m pipdeptree > $(REQUIREMENTS_FILE_NAME)-pipdeptree.txt
+	$(VENV_PATH_UNIX)/python -m pipdeptree > pipdeptree.txt
 endif
 
 # Show Installed Packages
@@ -51,12 +51,12 @@ endif
 clean_venv:
 ifeq ($(OS),Windows_NT)
 	if exist $(VENV_NAME) rmdir /s /q $(VENV_NAME)
-	if exist $(REQUIREMENTS_FILE_NAME)-lock.txt del /q $(REQUIREMENTS_FILE_NAME)-lock.txt
-	if exist $(REQUIREMENTS_FILE_NAME)-pipdeptree.txt del /q $(REQUIREMENTS_FILE_NAME)-pipdeptree.txt
+	if exist $(REQUIREMENTS_FILE_NAME)_lock.txt del /q $(REQUIREMENTS_FILE_NAME)_lock.txt
+	if exist pipdeptree.txt del /q pipdeptree.txt
 else
 	test -d $(VENV_NAME) && rm -rf $(VENV_NAME)
-	test -f $(REQUIREMENTS_FILE_NAME)-lock.txt && rm -f $(REQUIREMENTS_FILE_NAME)-lock.txt
-	test -f $(REQUIREMENTS_FILE_NAME)-pipdeptree.txt && rm -f $(REQUIREMENTS_FILE_NAME)-pipdeptree.txt
+	test -f $(REQUIREMENTS_FILE_NAME)_lock.txt && rm -f $(REQUIREMENTS_FILE_NAME)_lock.txt
+	test -f pipdeptree.txt && rm -f pipdeptree.txt
 endif
 
 # Uninstall Virtual Environment and Install Requirements
