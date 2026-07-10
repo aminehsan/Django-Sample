@@ -62,8 +62,18 @@ endif
 # Uninstall Virtual Environment and Install Requirements
 clean_install_packages: clean_venv install_packages
 
+# Django help
+django_help:
+ifeq ($(OS),Windows_NT)
+	$(VENV_PATH_WINDOWS)\django-admin version && \
+	$(VENV_PATH_WINDOWS)\django-admin help
+else
+	$(VENV_PATH_UNIX)/django-admin version && \
+	$(VENV_PATH_UNIX)/django-admin help
+endif
+
 # Django Start Project
-django_start_project:
+django_start_project: django_help
 ifeq ($(OS),Windows_NT)
 	if not exist core $(VENV_PATH_WINDOWS)\django-admin startproject core .
 else
