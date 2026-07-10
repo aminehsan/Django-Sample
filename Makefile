@@ -17,11 +17,11 @@ execute_custom:
 setup_venv:
 ifeq ($(OS),Windows_NT)
 	if not exist $(VENV_NAME) $(PYTHON_NAME) -m venv $(VENV_NAME) && \
-	$(VENV_PATH_WINDOWS)\python -m pip install --upgrade pip && \
+	$(VENV_PATH_WINDOWS)\pip install --upgrade pip && \
 	$(VENV_PATH_WINDOWS)\pip install pipdeptree
 else
 	test -d $(VENV_NAME) || $(PYTHON_NAME) -m venv $(VENV_NAME) && \
-	$(VENV_PATH_UNIX)/python -m pip install --upgrade pip && \
+	$(VENV_PATH_UNIX)/pip install --upgrade pip && \
 	$(VENV_PATH_UNIX)/pip install pipdeptree
 endif
 
@@ -30,21 +30,21 @@ install_packages: setup_venv
 ifeq ($(OS),Windows_NT)
 	$(VENV_PATH_WINDOWS)\pip install -r $(REQUIREMENTS_FILE_NAME).txt && \
 	$(VENV_PATH_WINDOWS)\pip freeze > $(REQUIREMENTS_FILE_NAME)_lock.txt && \
-	$(VENV_PATH_WINDOWS)\python -m pipdeptree && \
-	$(VENV_PATH_WINDOWS)\python -m pipdeptree > pipdeptree.txt
+	$(VENV_PATH_WINDOWS)\pipdeptree && \
+	$(VENV_PATH_WINDOWS)\pipdeptree > pipdeptree.txt
 else
 	$(VENV_PATH_UNIX)/pip install -r $(REQUIREMENTS_FILE_NAME).txt && \
 	$(VENV_PATH_UNIX)/pip freeze > $(REQUIREMENTS_FILE_NAME)_lock.txt && \
-	$(VENV_PATH_UNIX)/python -m pipdeptree && \
-	$(VENV_PATH_UNIX)/python -m pipdeptree > pipdeptree.txt
+	$(VENV_PATH_UNIX)/pipdeptree && \
+	$(VENV_PATH_UNIX)/pipdeptree > pipdeptree.txt
 endif
 
 # Show Installed Packages
 show_packages: setup_venv
 ifeq ($(OS),Windows_NT)
-	$(VENV_PATH_WINDOWS)\python -m pipdeptree
+	$(VENV_PATH_WINDOWS)\pipdeptree
 else
-	$(VENV_PATH_UNIX)/python -m pipdeptree
+	$(VENV_PATH_UNIX)/pipdeptree
 endif
 
 # Uninstall Virtual Environment
