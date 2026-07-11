@@ -62,8 +62,8 @@ endif
 # Uninstall Virtual Environment and Install Requirements
 clean_install_packages: clean_venv install_packages
 
-# Django help
-django_help:
+# Django Admin Help
+django_admin_help:
 ifeq ($(OS),Windows_NT)
 	$(VENV_PATH_WINDOWS)\django-admin version && \
 	$(VENV_PATH_WINDOWS)\django-admin help
@@ -73,11 +73,19 @@ else
 endif
 
 # Django Start Project
-django_start_project: django_help
+django_start_project:
 ifeq ($(OS),Windows_NT)
-	if not exist core $(VENV_PATH_WINDOWS)\django-admin startproject core .
+	if not exist manage.py $(VENV_PATH_WINDOWS)\django-admin startproject core .
 else
-	test -d core || $(VENV_PATH_UNIX)/django-admin startproject core .
+	test -f manage.py || $(VENV_PATH_UNIX)/django-admin startproject core .
+endif
+
+# Django Manage Help
+django_manage_help: django_start_project
+ifeq ($(OS),Windows_NT)
+	$(VENV_PATH_WINDOWS)\python manage.py help
+else
+	$(VENV_PATH_UNIX)/python manage.py help
 endif
 
 # Django Delete Project
