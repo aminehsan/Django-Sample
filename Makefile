@@ -17,11 +17,11 @@ execute_custom:
 setup_venv:
 ifeq ($(OS),Windows_NT)
 	if not exist $(VENV_NAME) $(PYTHON_NAME) -m venv $(VENV_NAME) && \
-	$(VENV_PATH_WINDOWS)\pip install --upgrade pip && \
+	$(VENV_PATH_WINDOWS)\python -m pip install --upgrade pip && \
 	$(VENV_PATH_WINDOWS)\pip install pipdeptree
 else
 	test -d $(VENV_NAME) || $(PYTHON_NAME) -m venv $(VENV_NAME) && \
-	$(VENV_PATH_UNIX)/pip install --upgrade pip && \
+	$(VENV_PATH_UNIX)/python -m pip install --upgrade pip && \
 	$(VENV_PATH_UNIX)/pip install pipdeptree
 endif
 
