@@ -1,17 +1,11 @@
 # Configurable Variables
 PYTHON_NAME := python
 VENV_NAME := .venv
-ENTRY_POINT_NAME := main
 REQUIREMENTS_FILE_NAME := requirements
 
 # VENV Paths
 VENV_PATH_WINDOWS := $(VENV_NAME)\Scripts
 VENV_PATH_UNIX := $(VENV_NAME)/bin
-
-# Execute Custom Commands
-execute_custom:
-	echo 'run command 1';
-	echo 'run command 2';
 
 # Setup VENV
 setup_venv:
