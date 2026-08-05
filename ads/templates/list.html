@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}لیست آگهی‌ها{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">لیست آگهی‌ها</h1>
+  {% if ads %} {% for ad in ads %}
+  <div class="card" style="width: 18rem">
+    <img src="" class="card-img-top" alt="تصویر آگهی" />
+    <div class="card-body">
+      <h5 class="card-title">{{ ad.title }}</h5>
+      <p class="card-text">{{ ad.description }}</p>
+      <h6>{{ ad.created_at }}</h6>
+      <a href="#" class="btn btn-primary">جزئیات</a>
+    </div>
+  </div>
+  {% endfor %} {% else %}
+  <div class="alert alert-warning">هنوز آگهی‌ای ثبت نشده است.</div>
+  {% endif %}
+</div>
+{% endblock %}
