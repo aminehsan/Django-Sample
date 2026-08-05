@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Vazirmatn RD";
+  src:
+    url("../fonts/Vazirmatn-RD[wght].woff2") format("woff2 supports variations"),
+    url("../fonts/Vazirmatn-RD[wght].woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bs-font-sans-serif: "Vazirmatn RD", system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
