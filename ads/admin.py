@@ -9,7 +9,6 @@ class AdAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
         "title",
-        "description",
     )
     list_filter = (
         "created_at",
