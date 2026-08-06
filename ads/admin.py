@@ -6,9 +6,10 @@ from .models import Ad
 class AdAdmin(admin.ModelAdmin):
     list_display = (
         "id",
+        "owner",
+        "title",
         "created_at",
         "updated_at",
-        "title",
     )
     list_filter = (
         "created_at",
