@@ -1,0 +1,26 @@
+{% extends 'base.html' %}{% load static %}{% block title %}ورود به سامانه{% endblock %}
+{% block content %}
+  <form method="post" class="row g-3">
+    {% csrf_token %}
+    <div class="col-md-6">
+      <div class="form-floating">
+        {{ form.username }}
+        {{ form.username.label_tag }}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-floating">
+        {{ form.password }}
+        {{ form.password.label_tag }}
+      </div>
+    </div>
+    {% if form.non_field_errors %}
+      <div class="col-12">
+        <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+      </div>
+    {% endif %}
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">ورود به سامانه</button>
+    </div>
+  </form>
+{% endblock %}
