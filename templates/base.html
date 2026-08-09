@@ -9,20 +9,10 @@
   <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
 </head>
 <body>
-  <div class="container">
-
-  {% if user.is_authenticated %}
-    <span>{{ user.username }}</span>
-    <form method="post" action="{% url 'logout' %}">
-      {% csrf_token %}
-      <button type="submit">خروج</button>
-    </form>
-  {% else %}
-    <a href="{% url 'login' %}">ورود</a>
-  {% endif %}
-
+{% include "navbar.html" %}
+<div class="container pt-5">
   {% block content %}{% endblock %}
-  </div>
-  <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</div>
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 </body>
 </html>

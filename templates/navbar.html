@@ -1,0 +1,13 @@
+<nav class="navbar sticky-top bg-body-tertiary">
+  <div class="container-fluid">
+    {% if user.is_authenticated %}
+      <span>{{ user.username }}</span>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">خروج</button>
+      </form>
+    {% else %}
+      <a href="{% url 'login' %}">ورود</a>
+    {% endif %}
+  </div>
+</nav>
