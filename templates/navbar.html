@@ -1,13 +1,21 @@
 <nav class="navbar sticky-top bg-body-tertiary">
   <div class="container-fluid">
-    {% if user.is_authenticated %}
-      <span>{{ user.username }}</span>
-      <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">خروج</button>
-      </form>
-    {% else %}
-      <a href="{% url 'login' %}">ورود</a>
-    {% endif %}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">حساب کاربری</a>
+      <ul class="dropdown-menu">
+        {% if user.is_authenticated %}
+          <li><a class="dropdown-item" href="#">{{ user.username }}</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <form class="dropdown-item" method="post" action="{% url 'logout' %}" style="--bs-dropdown-link-active-bg: transparent; --bs-dropdown-link-hover-bg: transparent;">
+              {% csrf_token %}
+              <button class="btn btn-secondary btn-sm" type="submit">خروج</button>
+            </form>
+          </li>
+        {% else %}
+          <li><a class="dropdown-item" href="{% url 'login' %}">ورود</a></li>
+        {% endif %}
+      </ul>
+    </li>
   </div>
 </nav>
