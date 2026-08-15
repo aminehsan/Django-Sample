@@ -1,21 +1,34 @@
-<nav class="navbar sticky-top bg-body-tertiary">
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">حساب کاربری</a>
-      <ul class="dropdown-menu">
-        {% if user.is_authenticated %}
-          <li><a class="dropdown-item" href="#">{{ user.username }}</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <form class="dropdown-item" method="post" action="{% url 'logout' %}" style="--bs-dropdown-link-active-bg: transparent; --bs-dropdown-link-hover-bg: transparent;">
-              {% csrf_token %}
-              <button class="btn btn-secondary btn-sm" type="submit">خروج</button>
-            </form>
-          </li>
-        {% else %}
-          <li><a class="dropdown-item" href="{% url 'login' %}">ورود</a></li>
-        {% endif %}
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="topNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">حساب کاربری</a>
+          <ul class="dropdown-menu">
+            {% if user.is_authenticated %}
+              <li><a class="dropdown-item" href="#">{{ user }}</a></li>
+              <li><hr class="dropdown-divider"/></li>
+              <li>
+                <form class="dropdown-item" method="post" action="{% url 'logout' %}" style="--bs-dropdown-link-active-bg: transparent; --bs-dropdown-link-hover-bg: transparent;">
+                  {% csrf_token %}
+                  <button class="btn btn-secondary btn-sm" type="submit">خروج</button>
+                </form>
+              </li>
+            {% else %}
+              <li><a class="dropdown-item" href="{% url 'login' %}">ورود</a></li>
+            {% endif %}
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link active" href="#">خانه</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">لینک</a></li>
+        <li class="nav-item"><a class="nav-link disabled">غیرفعال</a></li>
       </ul>
-    </li>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="جستجو"/>
+        <button class="btn btn-outline-success" type="submit">جستجو</button>
+      </form>
+    </div>
   </div>
 </nav>
